@@ -25,8 +25,10 @@ public class Example implements Serializable {
         }
         return example;
     }
-
-    public Object readResolve(){
-        return example;
-    }
+    /*
+            This is to protect from Deserialization.
+    */
+//    public Object readResolve(){
+//        return example;
+//    }
 }

@@ -14,10 +14,10 @@ public class Main {
             This is the covert way in which the Singleton Design Pattern will be implemented.
          */
         Example example1 = Example.getExample();
-//        Example example2 = Example.getExample();
-//
-//        System.out.println(example1.hashCode());
-//        System.out.println(example2.hashCode());
+        Example example2 = Example.getExample();
+
+        System.out.println(example1.hashCode());
+        System.out.println(example2.hashCode());
 
 
         /*
