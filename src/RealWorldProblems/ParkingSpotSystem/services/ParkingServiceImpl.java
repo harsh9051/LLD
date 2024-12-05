@@ -1,5 +1,6 @@
 package RealWorldProblems.ParkingSpotSystem.services;
 
+import RealWorldProblems.ParkingSpotSystem.dto.Decorator.Wash;
 import RealWorldProblems.ParkingSpotSystem.dto.ParkingLot;
 import RealWorldProblems.ParkingSpotSystem.dto.ParkingTicket;
 import RealWorldProblems.ParkingSpotSystem.dto.parkingspot.ParkingSpot;
@@ -8,6 +9,8 @@ import RealWorldProblems.ParkingSpotSystem.enums.ParkingSpotEnum;
 import RealWorldProblems.ParkingSpotSystem.interfaces.IDisplayService;
 import RealWorldProblems.ParkingSpotSystem.interfaces.IParkingService;
 import RealWorldProblems.ParkingSpotSystem.parkingStrategy.Strategy;
+import RealWorldProblems.ParkingSpotSystem.paymentMethods.Cash;
+import RealWorldProblems.ParkingSpotSystem.paymentMethods.PaymentMethods;
 
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class ParkingServiceImpl implements IParkingService {
     Strategy parkingStrategy;
     ParkingLot parkingLot;
     IDisplayService iDisplayService;
+    PaymentMethods paymentMethods;
 
     public ParkingServiceImpl(Strategy parkingStrategy) {
         this.parkingStrategy = parkingStrategy;
@@ -33,6 +37,7 @@ public class ParkingServiceImpl implements IParkingService {
             if(parkingSpot.isFree()){
                 synchronized (parkingSpot){
                     if(parkingSpot.isFree()){
+                        parkingSpot = new Wash(parkingSpot.getFloor(), parkingSpot.getAmount(), parkingSpot);
                         parkingSpot.setFree(false);
                         freeSpots.remove(parkingSpot);
                         occupiedSpots.add(parkingSpot);
@@ -54,6 +59,8 @@ public class ParkingServiceImpl implements IParkingService {
         if (parkingTicket.getVehicle().equals(vehicle)){
             ParkingSpot parkingSpot = parkingTicket.getParkingSpot();
             int amount = parkingSpot.cost(parkingTicket.getParkingHours());
+            paymentMethods = new Cash();
+            paymentMethods.initiatePayment(amount);
             parkingSpot.setFree(true);
             parkingLot.getOccupiedSpots().get(vehicle.getParkingSpotEnum()).remove(parkingSpot);
             parkingLot.getFreeSpots().get(vehicle.getParkingSpotEnum()).add(parkingSpot);

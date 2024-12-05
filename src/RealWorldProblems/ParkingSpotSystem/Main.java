@@ -35,14 +35,18 @@ public class Main {
 
         System.out.println("Parking ticket : "+ ticket1.getId());
 
-        ParkingTicket ticket2 = iParkingService.entry(v2);
-        System.out.println("Parking ticket : "+ ticket2.getId());
+        int cost = iParkingService.exit(ticket1, v1);
 
-        //Exit vehicle v2
-        int cost = iParkingService.exit(ticket2, v2);
-        System.out.println("Amount : "+ cost);
+        System.out.println("Cost : "+ cost);
 
-        System.out.println(parkingLot.getDisplayBoard().getFreeOccupiedSpots().get(ParkingSpotEnum.COMPACT));
+//        ParkingTicket ticket2 = iParkingService.entry(v2);
+//        System.out.println("Parking ticket : "+ ticket2.getId());
+//
+//        //Exit vehicle v2
+//        int cost = iParkingService.exit(ticket2, v2);
+//        System.out.println("Amount : "+ cost);
+
+//        System.out.println(parkingLot.getDisplayBoard().getFreeOccupiedSpots().get(ParkingSpotEnum.COMPACT));
 
     }
 }
