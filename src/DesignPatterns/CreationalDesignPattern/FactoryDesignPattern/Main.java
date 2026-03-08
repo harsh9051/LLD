@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String arge[]){
 
-        Button button = ButtonFactory.createButton("Windows");
-        button.onClick();
+        ButtonFactory buttonFactory = new HTMLButtonFactory();
+        buttonFactory.createButton().onClick();
 
     }
 }

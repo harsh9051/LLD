@@ -1,5 +1,5 @@
 package DesignPatterns.CreationalDesignPattern.AbstractDesignPattern;
 
-public interface Car {
-    void carBrand();
+public interface Button {
+    void onClick();
 }

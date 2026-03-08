@@ -1,5 +1,5 @@
 package DesignPatterns.CreationalDesignPattern.AbstractDesignPattern;
 
-public interface Bike {
-    void bikeName();
+public interface CheckBox {
+    void onBox();
 }

@@ -1,0 +1,9 @@
+var start = Date.now();
+db.DR_PRECHECKS_MONITORING.find({}, {})
+.sort({ timeCreated: -1, id: -1 })
+.hint({
+      $native: "NO_JSON_TABLE_TRANSFORM",
+      $type: { timeCreated: "number" }
+})
+var end = Date.now();
+print("Query Time = " + (end - start) + " ms");

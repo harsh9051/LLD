@@ -23,7 +23,7 @@ public class PlayerTurnState implements GameState{
                         blackJackGame.setGameState(new DealerState());
                     }
                 } else if (action.equals("s")) {
-                    blackJackGame.setGameState(new DealCardState());
+                    blackJackGame.setGameState(new DealerState());
                 }
             }else{
                 System.out.println("Invalid action please ");

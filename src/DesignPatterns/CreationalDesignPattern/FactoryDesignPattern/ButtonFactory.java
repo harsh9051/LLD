@@ -1,9 +1,11 @@
 package DesignPatterns.CreationalDesignPattern.FactoryDesignPattern;
 
-public class ButtonFactory {
+public abstract class ButtonFactory {
 
-    public static Button createButton(String input){
-        if(input.trim().equalsIgnoreCase("Windows"))return new WindowsButton();
-        return new HTMLButton();
+    public Button createButton(){
+        return createButtonClass();
     }
+
+    protected abstract Button createButtonClass();
+
 }
